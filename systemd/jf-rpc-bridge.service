@@ -1,0 +1,12 @@
+[Unit]
+Description=Jellyfin -> Discord presence bridge (feeds a WS presence renderer)
+After=default.target
+
+[Service]
+ExecStart=/usr/bin/uv run --with aiohttp %h/.local/bin/jf-rpc-bridge.py
+EnvironmentFile=%h/.config/jf-rpc-bridge.env
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=default.target

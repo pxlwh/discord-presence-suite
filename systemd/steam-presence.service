@@ -1,0 +1,13 @@
+[Unit]
+Description=Steam game -> Discord presence (official app ids, local IPC, token-free)
+After=default.target
+
+[Service]
+ExecStart=/usr/bin/uv run --with pypresence --with psutil %h/.local/bin/steam-presence.py
+EnvironmentFile=-%h/.config/steam-presence.env
+Restart=on-failure
+RestartSec=15
+SuccessExitStatus=143
+
+[Install]
+WantedBy=default.target

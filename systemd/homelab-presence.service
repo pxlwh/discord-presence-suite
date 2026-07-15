@@ -1,0 +1,13 @@
+[Unit]
+Description=Idle Discord presence: homelab heartbeat (healthy-or-silent, local IPC)
+After=default.target
+
+[Service]
+ExecStart=/usr/bin/uv run --with pypresence %h/.local/bin/homelab-presence.py
+EnvironmentFile=%h/.config/homelab-presence.env
+Restart=on-failure
+RestartSec=30
+SuccessExitStatus=143
+
+[Install]
+WantedBy=default.target

@@ -1,0 +1,12 @@
+[Unit]
+Description=Navidrome -> Discord rich presence (pypresence, local IPC, token-free)
+After=default.target
+
+[Service]
+ExecStart=/usr/bin/uv run --with pypresence --with jeepney %h/.local/bin/nd-rpc-bridge.py
+EnvironmentFile=%h/.config/nd-rpc-bridge.env
+Restart=on-failure
+RestartSec=15
+
+[Install]
+WantedBy=default.target
